@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <Body>
+        <add_adverts>
+            <advert>
+                <account_id>GA123456</account_id>
+                <account>
+                    <transfert_id>AGENCY_002</transfert_id>
+                    <agency_name>CENTURY 21 MASTERS</agency_name>
+                    <email>cun@century21.tn</email>
+                    <phone>+21623222322</phone>
+                    <mobile>+21623222322</mobile>
+                </account>
+                <reference>PROP_2025_001</reference>
+                <advert_type>properties</advert_type>
+                <status>available</status>
+                <price>450000</price>
+                <currency>EUR</currency>
+                <postal_code>75001</postal_code>
+                <city>Paris</city>
+                <country_code>FR</country_code>
+                <property_type>appartement</property_type>
+                <location_id>12345</location_id>
+                <software>PropertyManager Pro</software>
+
+                <!-- Energy Performance -->
+                <dpe_value>120.5</dpe_value>
+                <dpe_type>C</dpe_type>
+                <ges_value>25.8</ges_value>
+                <ges_type>B</ges_type>
+
+                <!-- Property Details -->
+                <structure>0</structure>
+                <mandate_number>MAN2025001</mandate_number>
+                <is_exclusive>1</is_exclusive>
+                <agency_rates>3.5</agency_rates>
+                <agency_rates_type>1</agency_rates_type>
+                <has_included_fees>0</has_included_fees>
+                <fees>15750</fees>
+
+                <!-- Location -->
+                <longitude>2.3522</longitude>
+                <latitude>48.8566</latitude>
+                <street_number>15</street_number>
+                <street_name>Rue de Rivoli</street_name>
+                <neighbourhood>Louvre</neighbourhood>
+
+                <!-- Property Descriptions -->
+                <title_fr>Magnifique appartement 3 pièces avec vue sur Seine</title_fr>
+                <summary_fr>Superbe appartement de 3 pièces situé dans le 1er arrondissement de
+                    Paris, avec une vue imprenable sur la Seine. Entièrement rénové avec des
+                    matériaux de qualité.</summary_fr>
+
+                <title_en>Beautiful 3-room apartment with Seine view</title_en>
+                <summary_en>Superb 3-room apartment located in the 1st arrondissement of Paris, with
+                    breathtaking views of the Seine. Completely renovated with quality materials.</summary_en>
+
+                <!-- Property Specifications -->
+                <habitable_surface>85.5</habitable_surface>
+                <rooms_number>3</rooms_number>
+                <bedrooms_number>2</bedrooms_number>
+                <baths_number>1</baths_number>
+                <showers_number>1</showers_number>
+                <floor>4</floor>
+                <floor_total>6</floor_total>
+
+                <!-- Amenities -->
+                <has_pool>0</has_pool>
+                <has_terrace>1</has_terrace>
+                <balconies_number>1</balconies_number>
+                <has_cellar>1</has_cellar>
+                <has_fireplace>0</has_fireplace>
+                <has_parquet>1</has_parquet>
+                <has_elevator>1</has_elevator>
+                <has_closets>1</has_closets>
+                <has_air_conditioning>0</has_air_conditioning>
+                <has_intercom>1</has_intercom>
+                <has_building_code>1</has_building_code>
+                <has_building_manager>1</has_building_manager>
+                <has_handicap_access>0</has_handicap_access>
+                <has_alarm>1</has_alarm>
+                <has_separate_toilet>1</has_separate_toilet>
+                <has_separate_entrance>0</has_separate_entrance>
+                <has_living_room>1</has_living_room>
+                <has_dining_room>1</has_dining_room>
+
+                <!-- Orientation -->
+                <is_not_overlooked>1</is_not_overlooked>
+                <is_south_facing>1</is_south_facing>
+                <is_east_facing>0</is_east_facing>
+                <is_west_facing>0</is_west_facing>
+                <is_north_facing>0</is_north_facing>
+
+                <!-- Kitchen and Heating -->
+                <kitchen_type>6</kitchen_type>
+                <heating>gas</heating>
+
+                <!-- Location Precision -->
+                <precise_location>1</precise_location>
+                <latitude_circle_center>48.8566</latitude_circle_center>
+                <longitude_circle_center>2.3522</longitude_circle_center>
+                <circle_radius>100</circle_radius>
+
+                <!-- Media -->
+                <video_link>https://example.com/video123</video_link>
+                <visit_3d_link>https://example.com/3d-tour/prop001</visit_3d_link>
+                <source_url>https://agency-website.com/property/prop001</source_url>
+
+                <!-- Publications -->
+                <publications>
+                    <greenacres>1</greenacres>
+                    <vizzit>1</vizzit>
+                </publications>
+
+                <!-- Photos -->
+                <pics_number>5</pics_number>
+                <pics>
+                    <pic order="1" last_update="2025-05-30">http://example.com/images/prop001_01.jpg</pic>
+                    <pic order="2" last_update="2025-05-30">http://example.com/images/prop001_02.jpg</pic>
+                    <pic order="3" last_update="2025-05-30">http://example.com/images/prop001_03.jpg</pic>
+                    <pic order="4" last_update="2025-05-30">http://example.com/images/prop001_04.jpg</pic>
+                    <pic order="5" last_update="2025-05-30">http://example.com/images/prop001_05.jpg</pic>
+                </pics>
+            </advert>
+
+            <!-- Second property example - rental -->
+            <advert>
+                <account>
+                    <transfert_id>AGENCY_002</transfert_id>
+                    <agency_name>Paris Properties Ltd</agency_name>
+                    <email>contact@parisproperties.fr</email>
+                    <phone>+33142501234</phone>
+                    <mobile>+33612345678</mobile>
+                </account>
+                <reference>RENT_2025_002</reference>
+                <advert_type>rentals</advert_type>
+                <status>available</status>
+                <price>2800</price>
+                <currency>EUR</currency>
+                <postal_code>75016</postal_code>
+                <city>Paris</city>
+                <country_code>FR</country_code>
+                <property_type>house</property_type>
+
+                <title_fr>Maison familiale avec jardin - 16ème arrondissement</title_fr>
+                <summary_fr>Belle maison familiale de 5 pièces avec jardin privatif dans le 16ème
+                    arrondissement. Parfaite pour une famille.</summary_fr>
+
+                <title_en>Family house with garden - 16th arrondissement</title_en>
+                <summary_en>Beautiful 5-room family house with private garden in the 16th
+                    arrondissement. Perfect for a family.</summary_en>
+
+                <habitable_surface>120</habitable_surface>
+                <land_surface>200</land_surface>
+                <rooms_number>5</rooms_number>
+                <bedrooms_number>3</bedrooms_number>
+                <baths_number>2</baths_number>
+
+                <!-- Rental specific -->
+                <charges>200</charges>
+                <furnished>0</furnished>
+                <rentals_fees>2800</rentals_fees>
+
+                <has_pool>0</has_pool>
+                <has_terrace>1</has_terrace>
+                <has_fireplace>1</has_fireplace>
+                <has_parquet>1</has_parquet>
+                <heating>gas</heating>
+
+                <longitude>2.2770</longitude>
+                <latitude>48.8584</latitude>
+                <precise_location>0</precise_location>
+
+                <pics_number>3</pics_number>
+                <pic_1>http://example.com/images/house001_01.jpg</pic_1>
+                <pic_2>http://example.com/images/house001_02.jpg</pic_2>
+                <pic_3>http://example.com/images/house001_03.jpg</pic_3>
+            </advert>
+        </add_adverts>
+    </Body>
+</Envelope>

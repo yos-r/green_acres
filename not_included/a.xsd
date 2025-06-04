@@ -1,0 +1,2013 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified"
+    elementFormDefault="qualified">
+    <xs:element name="Envelope">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="Body">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="add_adverts">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="advert" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:all>
+                                                    <xs:element ref="acc" />
+                                                    <xs:element name="transfert_id" minOccurs="0"
+                                                        maxOccurs="1">
+                                                        <xs:annotation>
+                                                            <xs:documentation>identifiant éditeur de
+                                                                l'agence</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string" />
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="reference">
+                                                        <xs:annotation>
+                                                            <xs:documentation>référence green-acres
+                                                                du bien</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string" />
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="advert_type">
+                                                        <xs:annotation>
+                                                            <xs:documentation>destination du bien :
+                                                                vente, location ou location vacances</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                                <xs:enumeration value="properties" />
+                                                                <xs:enumeration value="rentals" />
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="status" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>statut du bien :
+                                                                disponible, sous compromis, vendu,
+                                                                loué, expiré</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                                <xs:enumeration value="available" />
+                                                                <xs:enumeration value="under_offer" />
+                                                                <xs:enumeration value="sold" />
+                                                                <xs:enumeration value="rented" />
+                                                                <xs:enumeration value="expired" />
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="price">
+                                                        <xs:annotation>
+                                                            <xs:documentation>prix du bien, charges
+                                                                incluses</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:int">
+                                                                <xs:minInclusive value="1" />
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="postal_code">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Code postal de
+                                                                l'adresse du bien</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                                <xs:maxLength value="10" />
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="currency">
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                                <xs:length value="3" />
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="department" minOccurs="0" />
+                                                    <xs:element name="region" minOccurs="0" />
+                                                    <xs:element name="city">
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                                <xs:maxLength value="75" />
+                                                                <xs:minLength value="1" />
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="location_id" minOccurs="0"
+                                                        maxOccurs="1">
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:int" />
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="software" minOccurs="0"
+                                                        maxOccurs="1">
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string" />
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="country_code">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Pays où est situé le
+                                                                bien</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                                <xs:length value="2" />
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="property_type">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Type de bien</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                                <xs:enumeration value="old" />
+                                                                <xs:enumeration value="recent" />
+                                                                <xs:enumeration value="house" />
+                                                                <xs:enumeration value="castle" />
+                                                                <xs:enumeration value="land" />
+                                                                <xs:enumeration value="appartement" />
+                                                                <xs:enumeration value="business" />
+                                                                <xs:enumeration value="parking" />
+                                                                <xs:enumeration value="new" />
+                                                                <xs:enumeration value="gite" />
+                                                                <xs:enumeration
+                                                                    value="bed_breakfast" />
+                                                                <xs:enumeration value="mobile_home" />
+                                                                <xs:enumeration value="fazenda" />
+                                                                <xs:enumeration value="building" />
+                                                                <xs:enumeration value="other" />
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="dpe_date" minOccurs="0"> </xs:element>
+                                                    <xs:element name="is_favorite" minOccurs="0"> </xs:element>
+                                                    <xs:element name="ges_date" minOccurs="0"> </xs:element>
+                                                    <xs:element name="dpe_value" minOccurs="0"
+                                                        maxOccurs="1">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Bilan énergétique du
+                                                                bien</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction
+                                                                        base="xs:decimal" />
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:enumeration value="" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="ges_value" minOccurs="0"
+                                                        maxOccurs="1">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Bilan gaz à effet de
+                                                                serre</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction
+                                                                        base="xs:decimal" />
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:enumeration value="" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="dpe_type" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Bilan énergétique du
+                                                                bien (lettre)</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                                <xs:enumeration value="" />
+                                                                <xs:enumeration value="A" />
+                                                                <xs:enumeration value="B" />
+                                                                <xs:enumeration value="C" />
+                                                                <xs:enumeration value="D" />
+                                                                <xs:enumeration value="E" />
+                                                                <xs:enumeration value="F" />
+                                                                <xs:enumeration value="G" />
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="ges_type" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Bilan gaz à effet de
+                                                                serre (lettre)</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                                <xs:enumeration value="" />
+                                                                <xs:enumeration value="A" />
+                                                                <xs:enumeration value="B" />
+                                                                <xs:enumeration value="C" />
+                                                                <xs:enumeration value="D" />
+                                                                <xs:enumeration value="E" />
+                                                                <xs:enumeration value="F" />
+                                                                <xs:enumeration value="G" />
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="structure" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Conditions de gros
+                                                                oeuvre : 0- structure/extérieur en
+                                                                bon état, 1- A rafraîchir, 2-
+                                                                structure/extérieur à restaurer</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                                <xs:enumeration value="?" />
+                                                                <xs:enumeration value="0" />
+                                                                <xs:enumeration value="1" />
+                                                                <xs:enumeration value="2" />
+                                                                <xs:enumeration value="" />
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="mandate_number" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Numéro de mandat </xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                                <xs:maxLength value="24" />
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="is_exclusive" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Le mandat est-il de
+                                                                type exclusif ? (Défaut : 0
+                                                                non-exclusif)</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                                <xs:enumeration value="0" />
+                                                                <xs:enumeration value="1" />
+                                                                <xs:enumeration value="" />
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="agency_rates" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>honoraires de
+                                                                transaction en pourcentage du prix
+                                                                de vente</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction
+                                                                        base="xs:decimal" />
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:enumeration value="" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="agency_rates_type"
+                                                        minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Qui paye les frais
+                                                                d'agence (0 : à la charge du
+                                                                vendeur, 1 = à la charge de l
+                                                                acquéreur, 2 = les deux)</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                                <xs:enumeration value="0" />
+                                                                <xs:enumeration value="1" />
+                                                                <xs:enumeration value="2" />
+                                                                <xs:enumeration value="" />
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="agency_rate_scale_url"
+                                                        minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Url du barème des
+                                                                honoraires de l'agence</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                                <xs:maxLength value="255" />
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="has_included_fees"
+                                                        minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Les frais d'agence
+                                                                sont ils inclue dans le prix ?</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                                <xs:enumeration value="0" />
+                                                                <xs:enumeration value="1" />
+                                                                <xs:enumeration value="" />
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="fees" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Frais d'agence</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction
+                                                                        base="xs:integer" />
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:enumeration value="" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="rentals_fees" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Frais d'agence dans le
+                                                                cas d'une location</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction
+                                                                        base="xs:integer" />
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:enumeration value="" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="longitude" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>longitude du bien</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction
+                                                                        base="xs:decimal" />
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:enumeration value="" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="latitude" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>latitude du bien</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction
+                                                                        base="xs:decimal" />
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:enumeration value="" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="title_fr" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>titre français</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string"> </xs:restriction>
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:enumeration value="" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="summary_fr" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>résumé français</xs:documentation>
+                                                        </xs:annotation>
+                                                    </xs:element>
+                                                    <xs:element name="title_en" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>titre anglais</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string"> </xs:restriction>
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:enumeration value="" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="summary_en" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>résumé anglais</xs:documentation>
+                                                        </xs:annotation>
+                                                    </xs:element>
+                                                    <xs:element name="title_es" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>titre espagnol</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string"> </xs:restriction>
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:enumeration value="" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="summary_es" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>résumé espagnol</xs:documentation>
+                                                        </xs:annotation>
+                                                    </xs:element>
+                                                    <xs:element name="title_de" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>titre allemand</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string"> </xs:restriction>
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:enumeration value="" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="summary_de" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>résumé allemand</xs:documentation>
+                                                        </xs:annotation>
+                                                    </xs:element>
+                                                    <xs:element name="title_nl" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>titre néerlandais</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string"> </xs:restriction>
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:enumeration value="" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="summary_nl" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>résumé néerlandais</xs:documentation>
+                                                        </xs:annotation>
+                                                    </xs:element>
+                                                    <xs:element name="title_ru" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>titre russe</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string"> </xs:restriction>
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:enumeration value="" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="summary_ru" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>résumé russe</xs:documentation>
+                                                        </xs:annotation>
+                                                    </xs:element>
+                                                    <xs:element name="title_pt" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>titre portugais</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string"> </xs:restriction>
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:enumeration value="" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="summary_pt" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>résumé portugais</xs:documentation>
+                                                        </xs:annotation>
+                                                    </xs:element>
+                                                    <xs:element name="title_it" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>titre italien</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string"> </xs:restriction>
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:enumeration value="" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="summary_it" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>résumé italien</xs:documentation>
+                                                        </xs:annotation>
+                                                    </xs:element>
+                                                    <xs:element name="title_dk" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>titre danois</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string"> </xs:restriction>
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:enumeration value="" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="summary_dk" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>résumé danois</xs:documentation>
+                                                        </xs:annotation>
+                                                    </xs:element>
+                                                    <xs:element name="title_ar" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>titre arabe</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string"> </xs:restriction>
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:enumeration value="" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="summary_ar" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>résumé arabe</xs:documentation>
+                                                        </xs:annotation>
+                                                    </xs:element>
+                                                    <xs:element name="title_bg" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>titre bulgare</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string"> </xs:restriction>
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:enumeration value="" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="summary_bg" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>résumé bulgare</xs:documentation>
+                                                        </xs:annotation>
+                                                    </xs:element>
+                                                    <xs:element name="title_cz" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>titre tchèque</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string"> </xs:restriction>
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:enumeration value="" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="summary_cz" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>résumé tchèque</xs:documentation>
+                                                        </xs:annotation>
+                                                    </xs:element>
+                                                    <xs:element name="title_fi" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>titre finlandais</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string"> </xs:restriction>
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:enumeration value="" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="summary_fi" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>résumé finlandais</xs:documentation>
+                                                        </xs:annotation>
+                                                    </xs:element>
+                                                    <xs:element name="title_gr" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>titre grec</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string"> </xs:restriction>
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:enumeration value="" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="summary_gr" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>résumé grec</xs:documentation>
+                                                        </xs:annotation>
+                                                    </xs:element>
+                                                    <xs:element name="title_he" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>titre hébreu</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string"> </xs:restriction>
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:enumeration value="" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="summary_he" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>résumé hébreu</xs:documentation>
+                                                        </xs:annotation>
+                                                    </xs:element>
+                                                    <xs:element name="title_pl" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>titre polonais</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string"> </xs:restriction>
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:enumeration value="" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="summary_pl" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>résumé polonais</xs:documentation>
+                                                        </xs:annotation>
+                                                    </xs:element>
+                                                    <xs:element name="title_ro" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>titre roumain</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string"> </xs:restriction>
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:enumeration value="" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="summary_ro" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>résumé roumain</xs:documentation>
+                                                        </xs:annotation>
+                                                    </xs:element>
+                                                    <xs:element name="title_se" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>titre suédois</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string"> </xs:restriction>
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:enumeration value="" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="summary_se" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>résumé suédois</xs:documentation>
+                                                        </xs:annotation>
+                                                    </xs:element>
+                                                    <xs:element name="title_sk" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>titre slovaque</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string"> </xs:restriction>
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:enumeration value="" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="summary_sk" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>résumé slovaque</xs:documentation>
+                                                        </xs:annotation>
+                                                    </xs:element>
+                                                    <xs:element name="title_zh" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>titre chinois</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string"> </xs:restriction>
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:enumeration value="" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="summary_zh" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>résumé chinois</xs:documentation>
+                                                        </xs:annotation>
+                                                    </xs:element>
+                                                    <xs:element name="habitable_surface"
+                                                        minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Surface habitable en
+                                                                m2</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction
+                                                                        base="xs:decimal" />
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:enumeration value="" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="land_surface" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Surface terrain en m2</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction
+                                                                        base="xs:decimal" />
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:enumeration value="" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="rooms_number" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Nombre de pièces</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction
+                                                                        base="xs:integer" />
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:enumeration value="" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="bedrooms_number" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Nombre de chambres</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction
+                                                                        base="xs:integer" />
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:enumeration value="" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="baths_number" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Nombre de salles de
+                                                                bain</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction
+                                                                        base="xs:integer" />
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:enumeration value="" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="showers_number" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Nombre de salles d'eau</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction
+                                                                        base="xs:integer" />
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:enumeration value="" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="floor" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Etage si appartement</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction
+                                                                        base="xs:integer" />
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:enumeration value="" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="floor_total" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Nombre total d'étages
+                                                                si appartement</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction
+                                                                        base="xs:integer" />
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:enumeration value="" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="has_pool" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>0 ou 1</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                                <xs:enumeration value="0" />
+                                                                <xs:enumeration value="1" />
+                                                                <xs:enumeration value="" />
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="has_terrace" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>0 ou 1</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                                <xs:enumeration value="0" />
+                                                                <xs:enumeration value="1" />
+                                                                <xs:enumeration value="" />
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="balconies_number"
+                                                        minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Nombre de balcons</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction
+                                                                        base="xs:integer" />
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:enumeration value="" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="open_parkings_number"
+                                                        minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Nombre de places de
+                                                                parking</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction
+                                                                        base="xs:integer" />
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:enumeration value="" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="boxes_number" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Nombre de boxes</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction
+                                                                        base="xs:integer" />
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:enumeration value="" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="has_cellar" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Présence d'une cave</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                                <xs:enumeration value="0" />
+                                                                <xs:enumeration value="1" />
+                                                                <xs:enumeration value="" />
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="has_fireplace" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Présence d'une
+                                                                cheminée</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                                <xs:enumeration value="0" />
+                                                                <xs:enumeration value="1" />
+                                                                <xs:enumeration value="" />
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="has_parquet" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Présence d'un parquet
+                                                                en bois</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                                <xs:enumeration value="0" />
+                                                                <xs:enumeration value="1" />
+                                                                <xs:enumeration value="" />
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="has_elevator" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Présence d'un
+                                                                ascenseur</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                                <xs:enumeration value="0" />
+                                                                <xs:enumeration value="1" />
+                                                                <xs:enumeration value="" />
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="has_closets" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Présence de rangements</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                                <xs:enumeration value="0" />
+                                                                <xs:enumeration value="1" />
+                                                                <xs:enumeration value="" />
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="has_air_conditioning"
+                                                        minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Présence d'un
+                                                                climatiseur</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                                <xs:enumeration value="0" />
+                                                                <xs:enumeration value="1" />
+                                                                <xs:enumeration value="" />
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="has_intercom" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Présence d'un
+                                                                interphone</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                                <xs:enumeration value="0" />
+                                                                <xs:enumeration value="1" />
+                                                                <xs:enumeration value="" />
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="has_building_code"
+                                                        minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Présence d'un digicode</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                                <xs:enumeration value="0" />
+                                                                <xs:enumeration value="1" />
+                                                                <xs:enumeration value="" />
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="has_building_manager"
+                                                        minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Présence d'un gardien</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                                <xs:enumeration value="0" />
+                                                                <xs:enumeration value="1" />
+                                                                <xs:enumeration value="" />
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="has_handicap_access"
+                                                        minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Présence d'un
+                                                                aménagement pour handicapés</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                                <xs:enumeration value="0" />
+                                                                <xs:enumeration value="1" />
+                                                                <xs:enumeration value="" />
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="has_alarm" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Présence d'une alarme</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                                <xs:enumeration value="0" />
+                                                                <xs:enumeration value="1" />
+                                                                <xs:enumeration value="" />
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="has_separate_toilet"
+                                                        minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Présence de toilettes
+                                                                séparées</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                                <xs:enumeration value="0" />
+                                                                <xs:enumeration value="1" />
+                                                                <xs:enumeration value="" />
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="has_separate_entrance"
+                                                        minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Entrée séparée</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                                <xs:enumeration value="0" />
+                                                                <xs:enumeration value="1" />
+                                                                <xs:enumeration value="" />
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="has_living_room" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Présence d'un séjour</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                                <xs:enumeration value="0" />
+                                                                <xs:enumeration value="1" />
+                                                                <xs:enumeration value="" />
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="has_dining_room" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Présence d'une salle à
+                                                                manger</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                                <xs:enumeration value="0" />
+                                                                <xs:enumeration value="1" />
+                                                                <xs:enumeration value="" />
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="is_not_overlooked"
+                                                        minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Pas de vis à vis</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                                <xs:enumeration value="0" />
+                                                                <xs:enumeration value="1" />
+                                                                <xs:enumeration value="" />
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="is_south_facing" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Orientation Sud</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                                <xs:enumeration value="0" />
+                                                                <xs:enumeration value="1" />
+                                                                <xs:enumeration value="" />
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="is_east_facing" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Orientation Est</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                                <xs:enumeration value="0" />
+                                                                <xs:enumeration value="1" />
+                                                                <xs:enumeration value="" />
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="is_west_facing" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Orientation Ouest</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                                <xs:enumeration value="0" />
+                                                                <xs:enumeration value="1" />
+                                                                <xs:enumeration value="" />
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="is_north_facing" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Orientation Nord</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                                <xs:enumeration value="0" />
+                                                                <xs:enumeration value="1" />
+                                                                <xs:enumeration value="" />
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="kitchen_type" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation> enum (0, 1, 2, 3, 4,
+                                                                5, 6, 7, 8) (0 = Non spécifié, 1 =
+                                                                Cuisine américaine, 2 = Cuisine
+                                                                séparée, 3 = Cuisine industrielle, 4
+                                                                = Kitchenette, 5 = Cuisine
+                                                                américaine équipée, 6 = Cuisine
+                                                                séparée équipée, 7 = Kitchenette
+                                                                équipée, 8 = Cuisine équipée) </xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction
+                                                                        base="xs:integer" />
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:enumeration value="" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="precise_location"
+                                                        minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation> Localisation par
+                                                                rapport au code postal indiqué : 0 =
+                                                                A proximité de (valeur par défaut) 1
+                                                                = Localisation précise </xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                                <xs:enumeration value="0" />
+                                                                <xs:enumeration value="1" />
+                                                                <xs:enumeration value="" />
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="street_number" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Numéro de la rue</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string" />
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:enumeration value="" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="street_name" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Nom de la rue</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string" />
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:enumeration value="" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="neighbourhood" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Nom du quartier</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string" />
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:enumeration value="" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="charges" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Charges pour la
+                                                                location</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction
+                                                                        base="xs:integer" />
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:enumeration value="" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="furnished" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Non meublé / Meublé
+                                                                pour une location (Défaut : 0 non
+                                                                meublé)</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                                <xs:enumeration value="0" />
+                                                                <xs:enumeration value="1" />
+                                                                <xs:enumeration value="" />
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="heating" minOccurs="0"
+                                                        maxOccurs="1">
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                                <xs:enumeration value="none" />
+                                                                <xs:enumeration value="fuel" />
+                                                                <xs:enumeration value="gas" />
+                                                                <xs:enumeration value="electric" />
+                                                                <xs:enumeration value="wood" />
+                                                                <xs:enumeration value="col" />
+                                                                <xs:enumeration value="geo" />
+                                                                <xs:enumeration value="aero" />
+                                                                <xs:enumeration value="sol" />
+                                                                <xs:enumeration value="?" />
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="video_link" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Url de la vidéo
+                                                                associée à l'annonce</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                                <xs:maxLength value="64" />
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="visit_3d_link" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Url de la visite
+                                                                virtuelle associée à l'annonce</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                                <xs:maxLength value="255" />
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="publications" minOccurs="0"
+                                                        maxOccurs="1">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="greenacres"
+                                                                    default="1" minOccurs="0"
+                                                                    maxOccurs="1" />
+                                                                <xs:element name="vizzit"
+                                                                    default="1" minOccurs="0"
+                                                                    maxOccurs="1" />
+                                                            </xs:sequence>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="latitude_circle_center"
+                                                        minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Latitude du cercle
+                                                                dans lequel l'annonce est contenue</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction
+                                                                        base="xs:decimal" />
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:enumeration value="" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="longitude_circle_center"
+                                                        minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Longitude du cercle
+                                                                dans lequel l'annonce est contenue</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction
+                                                                        base="xs:decimal" />
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:enumeration value="" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="circle_radius" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Rayon du cercle dans
+                                                                lequel l'annonce est contenue en
+                                                                mètres</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction
+                                                                        base="xs:decimal" />
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:enumeration value="" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="source_url" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Url de l'annonce sur
+                                                                le site partenaire</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                                <xs:maxLength value="500" />
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="pics_number" minOccurs="0"
+                                                        maxOccurs="1" type="xs:int" />
+                                                    <xs:element name="pic_1" minOccurs="0">
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:pattern
+                                                                            value="http://.*.jpg|http://.*.JPG" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string"> </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="pic_2" minOccurs="0">
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:pattern
+                                                                            value="http://.*.jpg|http://.*.JPG" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string"> </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="pic_3" minOccurs="0">
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:pattern
+                                                                            value="http://.*.jpg|http://.*.JPG" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string"> </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="pic_4" minOccurs="0">
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:pattern
+                                                                            value="http://.*.jpg|http://.*.JPG" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string"> </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="pic_5" minOccurs="0">
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:pattern
+                                                                            value="http://.*.jpg|http://.*.JPG" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string"> </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="pic_6" minOccurs="0">
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:pattern
+                                                                            value="http://.*.jpg|http://.*.JPG" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string"> </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="pic_7" minOccurs="0">
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:pattern
+                                                                            value="http://.*.jpg|http://.*.JPG" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string"> </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="pic_8" minOccurs="0">
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:pattern
+                                                                            value="http://.*.jpg|http://.*.JPG" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string"> </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="pic_9" minOccurs="0">
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:pattern
+                                                                            value="http://.*.jpg|http://.*.JPG" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string"> </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="pic_10" minOccurs="0">
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:pattern
+                                                                            value="http://.*.jpg|http://.*.JPG" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string"> </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="pic_11" minOccurs="0">
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:pattern
+                                                                            value="http://.*.jpg|http://.*.JPG" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string"> </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="pic_12" minOccurs="0">
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:pattern
+                                                                            value="http://.*.jpg|http://.*.JPG" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string"> </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="pic_13" minOccurs="0">
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:pattern
+                                                                            value="http://.*.jpg|http://.*.JPG" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string"> </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="pic_14" minOccurs="0">
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:pattern
+                                                                            value="http://.*.jpg|http://.*.JPG" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string"> </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="pic_15" minOccurs="0">
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:pattern
+                                                                            value="http://.*.jpg|http://.*.JPG" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string"> </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="pic_16" minOccurs="0">
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:pattern
+                                                                            value="http://.*.jpg|http://.*.JPG" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string"> </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="pic_17" minOccurs="0">
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:pattern
+                                                                            value="http://.*.jpg|http://.*.JPG" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string"> </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="pic_18" minOccurs="0">
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:pattern
+                                                                            value="http://.*.jpg|http://.*.JPG" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string"> </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="pic_19" minOccurs="0">
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:pattern
+                                                                            value="http://.*.jpg|http://.*.JPG" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string"> </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="pic_20" minOccurs="0">
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:pattern
+                                                                            value="http://.*.jpg|http://.*.JPG" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string"> </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="pic_21" minOccurs="0">
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:pattern
+                                                                            value="http://.*.jpg|http://.*.JPG" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string"> </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="pic_22" minOccurs="0">
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:pattern
+                                                                            value="http://.*.jpg|http://.*.JPG" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string"> </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="pic_23" minOccurs="0">
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:pattern
+                                                                            value="http://.*.jpg|http://.*.JPG" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string"> </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="pic_24" minOccurs="0">
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:pattern
+                                                                            value="http://.*.jpg|http://.*.JPG" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string"> </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="pic_25" minOccurs="0">
+                                                        <xs:simpleType>
+                                                            <xs:union>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:pattern
+                                                                            value="http://.*.jpg|http://.*.JPG" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string"> </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:union>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="pics" minOccurs="0"
+                                                        maxOccurs="1">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="pic"
+                                                                    maxOccurs="60">
+                                                                    <xs:complexType>
+                                                                        <xs:simpleContent>
+                                                                            <xs:extension
+                                                                                base="xs:anyURI">
+                                                                                <xs:attribute
+                                                                                    name="order"
+                                                                                    use="required"
+                                                                                    type="xs:byte" />
+                                                                                <xs:attribute
+                                                                                    name="last_update"
+                                                                                    use="optional"
+                                                                                    type="xs:date" />
+                                                                            </xs:extension>
+                                                                        </xs:simpleContent>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                            </xs:sequence>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:all>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:all>
+                    </xs:complexType>
+                </xs:element>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="acc" abstract="true" />
+    <xs:element name="owner" type="xs:string" substitutionGroup="acc" />
+    <xs:element name="account" substitutionGroup="acc">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="transfert_id" minOccurs="0" type="xs:string" />
+                <xs:element name="agency_name" minOccurs="0" type="xs:string" />
+                <xs:element name="email" minOccurs="0" type="xs:string" />
+                <xs:element name="phone" minOccurs="0" type="xs:string" />
+                <xs:element name="mobile" minOccurs="0" type="xs:string" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="account_id" substitutionGroup="acc">
+        <xs:annotation>
+            <xs:documentation>identifiant green-acres de l'agence</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+            <xs:restriction base="xs:string" />
+        </xs:simpleType>
+    </xs:element>
+</xs:schema>

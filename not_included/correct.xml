@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <Body>
+        <add_adverts>
+            <advert>
+                <account_id>GA123456</account_id>
+                <account>
+                    <transfert_id>AGENCY_002</transfert_id>
+                    <agency_name>CENTURY 21 MASTERS</agency_name>
+                    <email>cun@century21.tn</email>
+                    <phone>+21623222322</phone>
+                    <mobile>+21623222322</mobile>
+                </account>
+                <reference>688220-2</reference>
+                <advert_type>rentals</advert_type>
+                <status>available</status>
+                <price>6000</price>
+                <currency>TND</currency>
+                <postal_code>1001</postal_code>
+                <city>Mutuelleville</city>
+                <country_code>TN</country_code>
+                <property_type>house</property_type>
+                
+                <structure>0</structure> 
+                <mandate_number>688220-2</mandate_number>
+                <is_exclusive>1</is_exclusive>
+                <agency_rates>100</agency_rates>
+                <agency_rates_type>2</agency_rates_type>
+                <has_included_fees>0</has_included_fees>
+                <fees>6000</fees>
+                
+                <longitude>2.3522</longitude>
+                <latitude>48.8566</latitude>
+                
+                <neighbourhood>Mutuelleville</neighbourhood>
+                
+                <title_fr>À louer villa S+4 Mutuelle Ville</title_fr>
+                <summary_fr>L’agence Immobilière Century 21 masters vous propose à la location une Villa en s4 située à notre dame :
+
+Rez De Chaussée:
+
+– salon salle à manger
+– Salle de séjour
+– Cuisine équipée
+
+Premier étage :
+
+– trois chambres
+– Salle de douche
+– Salle de bain
+– Terrasse
+– salon
+
+Extérieur :
+
+– Loge gardien
+– Parking pour deux voitures
+– Climatisation
+– Chauffage central
+– Jardin
+
+Pour plus d’informations ou pour organiser une visite, contactez nous au : 24 936 937 / 23 221 222</summary_fr>
+                
+                <title_en>À louer villa S+4 Mutuelle Ville</title_en>
+                <summary_en>L’agence Immobilière Century 21 masters vous propose à la location une Villa en s4 située à notre dame :
+
+Rez De Chaussée:
+
+– salon salle à manger
+– Salle de séjour
+– Cuisine équipée
+
+Premier étage :
+
+– trois chambres
+– Salle de douche
+– Salle de bain
+– Terrasse
+– salon
+
+Extérieur :
+
+– Loge gardien
+– Parking pour deux voitures
+– Climatisation
+– Chauffage central
+– Jardin
+
+Pour plus d’informations ou pour organiser une visite, contactez nous au : 24 936 937 / 23 221 222.</summary_en>
+                
+                <habitable_surface>85.5</habitable_surface>
+                <rooms_number>5</rooms_number>
+                <bedrooms_number>4</bedrooms_number>
+                <baths_number>1</baths_number>
+                <floor>0</floor>
+                <floor_total>2</floor_total>
+                
+                <has_pool>0</has_pool>
+                <has_terrace>1</has_terrace>
+                <balconies_number>1</balconies_number>
+                <has_cellar>1</has_cellar>
+                <has_fireplace>0</has_fireplace>
+                <has_parquet>1</has_parquet>
+                <has_elevator>0</has_elevator>
+                <has_air_conditioning>1</has_air_conditioning>
+                <has_building_manager>0</has_building_manager>
+                <has_alarm>0</has_alarm>
+                <has_separate_toilet>0</has_separate_toilet>
+                
+                
+                
+                
+                <!-- 0 non specifie , 8 cuisine equipee -->
+                <kitchen_type>8</kitchen_type>
+                
+                <precise_location>0</precise_location>
+                <latitude_circle_center>48.8566</latitude_circle_center>
+                <longitude_circle_center>2.3522</longitude_circle_center>
+                <circle_radius>100</circle_radius>
+                
+                <!-- <video_link>https://example.com/video123</video_link> -->
+                <source_url>https://century21.tn/property/a-louer-villa-s4-mutuelle-ville/</source_url>
+                
+                <publications>
+                    <greenacres>1</greenacres>
+                    <vizzit>1</vizzit>
+                </publications>
+                
+                <pics_number>5</pics_number>
+                <pics>
+                    <pic order="1" last_update="2025-05-30">https://logis.fra1.digitaloceanspaces.com/1/Properties/90093/conversions/N2rQXwzu6lekzroI-thumb.jpg</pic>
+                    <pic order="2" last_update="2025-05-30">https://logis.fra1.digitaloceanspaces.com/1/Properties/90093/conversions/N2rQXwzu6lekzroI-thumb.jpg</pic>
+                    
+                    <pic order="3" last_update="2025-05-30">https://logis.fra1.digitaloceanspaces.com/1/Properties/90094/conversions/cpa5rmzGH5pdbc7j-thumb.jpg</pic>
+                    
+                </pics>
+            </advert>
+            
+            
+        </add_adverts>
+    </Body>
+</Envelope>
