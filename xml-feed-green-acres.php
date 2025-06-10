@@ -36,6 +36,8 @@ remove_filter('the_title', 'wptexturize');
 function clean_for_xml($text) {
     // First decode HTML entities
     $text = html_entity_decode($text, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+    // Remove any remaining HTML tags
+    $text = strip_tags($text);
     // Then escape for XML (this handles &, <, >, ", ')
     return esc_xml($text);
 }
@@ -51,29 +53,62 @@ echo '<?xml version="1.0" encoding="UTF-8"?>'; ?>
                     <reference>3315306a-<?php echo esc_html(sb_ga_get_detail('fave_property_id')); ?></reference>
 
                     <account>
-                        <agency_name><?php echo clean_for_xml(get_the_title(sb_ga_get_detail('fave_property_agency'))); ?></agency_name>
-                        
+                        <?php 
+                        $agency_id = sb_ga_get_detail('fave_property_agency');
+                        $agency_name = '';
+                        if (!empty($agency_id)) {
+                            $agency_title = get_the_title($agency_id);
+                            $agency_name = !empty($agency_title) ? $agency_title : 'Century 21 Tunisie';
+                        } else {
+                            $agency_name = 'Century 21 Tunisie';
+                        }
+                        ?>
+                        <agency_name><?php echo clean_for_xml($agency_name); ?></agency_name>
                     </account>
+
                     <?php
                     $status_terms = sb_ga_get_details('property_status');
-                    $status = is_array($status_terms) ? implode(' ', $status_terms) : '';
-                    $type = (stripos($status, 'Location') !== false) ? 'rentals' : 'properties';
+                    $status = '';
+                    if (is_array($status_terms) && !empty($status_terms)) {
+                        $status = implode(' ', $status_terms);
+                    } elseif (!empty($status_terms)) {
+                        $status = $status_terms;
+                    }
+                    $advert_type = (stripos($status, 'Location') !== false) ? 'rentals' : 'properties';
                     ?>
-                    <advert_type><?php echo $type; ?></advert_type>
+                    <advert_type><?php echo $advert_type; ?></advert_type>
                     <status>available</status>
-                    <price><?php echo intval(sb_ga_get_detail('fave_property_price')); ?></price>
+                    
+                    <?php 
+                    $price = sb_ga_get_detail('fave_property_price');
+                    $price_value = !empty($price) ? intval($price) : 0;
+                    ?>
+                    <price><?php echo $price_value; ?></price>
                     <currency>TND</currency>
                     <postal_code></postal_code>
+                    
                     <city><?php 
                     $city_terms = sb_ga_get_details('property_city');
-                    echo clean_for_xml(is_array($city_terms) ? implode(', ', $city_terms) : $city_terms);
+                    $city_name = '';
+                    if (is_array($city_terms) && !empty($city_terms)) {
+                        $city_name = implode(', ', $city_terms);
+                    } elseif (!empty($city_terms)) {
+                        $city_name = $city_terms;
+                    }
+                    echo clean_for_xml($city_name);
                     ?></city>
                     <country_code>TN</country_code>
+
                     <?php
                     $type_terms = sb_ga_get_details('property_type');
-                    $type = is_array($type_terms) ? trim(strtolower($type_terms[0])) : trim(strtolower($type_terms));
+                    $type = '';
+                    if (is_array($type_terms) && !empty($type_terms)) {
+                        $type = trim(strtolower($type_terms[0]));
+                    } elseif (!empty($type_terms)) {
+                        $type = trim(strtolower($type_terms));
+                    }
                     
-                    $mapping = [
+                    $mapping = array(
                         'bureau' => 'business',
                         'local commercial' => 'business',
                         'fond de commerce' => 'business',
@@ -90,7 +125,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>'; ?>
                         'terrain' => 'land',
                         'autre' => 'other',
                         'other' => 'other',
-                    ];
+                    );
 
                     $property_type = isset($mapping[$type]) ? $mapping[$type] : 'other';
                     ?>
@@ -105,16 +140,19 @@ echo '<?xml version="1.0" encoding="UTF-8"?>'; ?>
 
                     <fees>
                         <?php 
-                        $price = intval(sb_ga_get_detail('fave_property_price'));
-                        echo (stripos($status, 'Location') !== false) ? $price : ($price * 0.03);
+                        echo (stripos($status, 'Location') !== false) ? $price_value : ($price_value * 0.02);
                         ?>
                     </fees>
 
                     <?php 
                     $location = sb_ga_get_detail('fave_property_location');
-                    $location_coords = !empty($location) ? explode(',', $location) : array('', '');
-                    $latitude = isset($location_coords[0]) ? trim($location_coords[0]) : '';
-                    $longitude = isset($location_coords[1]) ? trim($location_coords[1]) : '';
+                    $latitude = '';
+                    $longitude = '';
+                    if (!empty($location)) {
+                        $location_coords = explode(',', $location);
+                        $latitude = isset($location_coords[0]) ? trim($location_coords[0]) : '';
+                        $longitude = isset($location_coords[1]) ? trim($location_coords[1]) : '';
+                    }
                     ?>
                     <longitude><?php echo esc_html($longitude); ?></longitude>
                     <latitude><?php echo esc_html($latitude); ?></latitude>
@@ -126,7 +164,9 @@ echo '<?xml version="1.0" encoding="UTF-8"?>'; ?>
                         echo "<neighbourhood>" . clean_for_xml($neighborhood) . "</neighbourhood>";
                     }
                     ?>
+                    
                     <title_fr><?php echo clean_for_xml(get_the_title()); ?></title_fr>
+                    
                     <summary_fr>
                         <?php 
                         ob_start();
@@ -142,22 +182,39 @@ echo '<?xml version="1.0" encoding="UTF-8"?>'; ?>
                         echo "<habitable_surface>" . intval($size) . "</habitable_surface>";
                     }
                     ?>
-                    <rooms_number><?php echo intval(sb_ga_get_detail('fave_property_bedrooms')) + 1; ?></rooms_number>
-                    <bedrooms_number><?php echo intval(sb_ga_get_detail('fave_property_bedrooms')); ?></bedrooms_number>
-                    <baths_number><?php echo intval(sb_ga_get_detail('fave_property_bathrooms')); ?></baths_number>
+                    
+                    <?php 
+                    $bedrooms = sb_ga_get_detail('fave_property_bedrooms');
+                    $bedrooms_count = !empty($bedrooms) ? intval($bedrooms) : 0;
+                    $rooms_count = $bedrooms_count + 1; // Adding 1 for living room
+                    ?>
+                    <rooms_number><?php echo $rooms_count; ?></rooms_number>
+                    <bedrooms_number><?php echo $bedrooms_count; ?></bedrooms_number>
+                    
+                    <?php 
+                    $bathrooms = sb_ga_get_detail('fave_property_bathrooms');
+                    $bathrooms_count = !empty($bathrooms) ? intval($bathrooms) : 0;
+                    ?>
+                    <baths_number><?php echo $bathrooms_count; ?></baths_number>
+                    
                     <?php 
                     $floors = sb_ga_get_detail('floor_plans');
-                    $floor_count = is_array($floors) ? count($floors) : 1;
+                    $floor_count = 1; // Default to 1 floor
+                    if (is_array($floors) && !empty($floors)) {
+                        $floor_count = count($floors);
+                    } elseif (!empty($floors)) {
+                        $floor_count = 1;
+                    }
                     ?>
                     <floor><?php echo $floor_count; ?></floor>
                     <floor_total><?php echo $floor_count; ?></floor_total>
 
-                    <has_pool><?php echo sb_ga_check_exist('property_feature', ['Piscine']) ? "1" : "0"; ?></has_pool>
-                    <has_terrace><?php echo sb_ga_check_exist('property_feature', ['Terrasse']) ? "1" : "0"; ?></has_terrace>
-                    <has_elevator><?php echo sb_ga_check_exist('property_feature', ['Ascenseur']) ? "1" : "0"; ?></has_elevator>
-                    <has_air_conditioning><?php echo sb_ga_check_exist('property_feature', ['Climatisation']) ? "1" : "0"; ?></has_air_conditioning>
-                    <has_alarm><?php echo sb_ga_check_exist('property_feature', ['Alarme']) ? "1" : "0"; ?></has_alarm>
-                    <kitchen_type><?php echo sb_ga_check_exist('property_feature', ['Cuisine Equipée']) ? "8" : "0"; ?></kitchen_type>
+                    <has_pool><?php echo sb_ga_check_exist('property_feature', array('Piscine')) ? "1" : "0"; ?></has_pool>
+                    <has_terrace><?php echo sb_ga_check_exist('property_feature', array('Terrasse')) ? "1" : "0"; ?></has_terrace>
+                    <has_elevator><?php echo sb_ga_check_exist('property_feature', array('Ascenseur')) ? "1" : "0"; ?></has_elevator>
+                    <has_air_conditioning><?php echo sb_ga_check_exist('property_feature', array('Climatisation')) ? "1" : "0"; ?></has_air_conditioning>
+                    <has_alarm><?php echo sb_ga_check_exist('property_feature', array('Alarme')) ? "1" : "0"; ?></has_alarm>
+                    <kitchen_type><?php echo sb_ga_check_exist('property_feature', array('Cuisine Equipée')) ? "8" : "0"; ?></kitchen_type>
 
                     <precise_location>0</precise_location>
                     

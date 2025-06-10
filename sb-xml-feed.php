@@ -5,7 +5,6 @@ Plugin Name: XML Feed Generator (Green Acres Feed)
 Version: 0.2.4
 Description: This plugin is required to generate kyero or any xml feed. This plugin will not generate automatically any feed, it contains only helper functions. 
 Author: Shashank Mishra
-
 */
 
 defined('ABSPATH') or die('Access Denied.');
@@ -33,7 +32,7 @@ add_action('query_vars', 'sb_ga_xml_feed_query_vars');
 function sb_ga_xml_feed_query_vars($query_vars)
 {
     $query_vars[] = 'xml_feed_action';
-    $query_vars[] = 'xml_feed_property_id'; // Fixed typo: was xml_feted_property_id
+    $query_vars[] = 'xml_feed_property_id';
 
     return $query_vars;
 }
@@ -47,7 +46,7 @@ function sb_ga_xml_feed_template_include($template)
         if (file_exists(get_stylesheet_directory() . '/xml-feed-green-acres.php')) {
             return get_stylesheet_directory() . '/xml-feed-green-acres.php';
         } else if (file_exists(get_template_directory() . '/xml-feed-green-acres.php')) {
-            return get_template_directory() . '/xml-feed-green-acres.php'; // Fixed: was returning stylesheet instead of template
+            return get_template_directory() . '/xml-feed-green-acres.php';
         } else {
             return plugin_dir_path(__FILE__) . '/xml-feed-green-acres.php';
         }
@@ -81,19 +80,22 @@ function sb_ga_get_details($name, $tag = '', $only_one = false)
     $term_arr = array();
     $count = 0;
     foreach ($terms as $term) {
-        if ($tag != '')
+        if ($tag != '') {
             echo "<{$tag}>{$term->name}</{$tag}>";
-        else
+        } else {
             $term_arr[] = $term->name;
+        }
 
         if ($only_one) {
             $count++;
-            if ($count >= 1)
+            if ($count >= 1) {
                 break;
+            }
         }
     }
-    if ($tag == '')
+    if ($tag == '') {
         return $term_arr;
+    }
 }
 
 function sb_ga_check_exist($name, $search = '')
@@ -121,105 +123,40 @@ function sb_ga_get_detail($name, $tag = '', $intval = false, $replace = null)
 {
     global $post;
     $post_meta = get_post_meta($post->ID, $name, true);
-    if ($intval)
+    if ($intval) {
         $post_meta = intval($post_meta);
+    }
     if (!empty($replace)) {
         $post_meta = str_replace($replace[0], $replace[1], $post_meta);
     }
 
-    if ($tag != '')
+    if ($tag != '') {
         echo "<{$tag}>{$post_meta}</{$tag}>";
-    else
+    } else {
         return $post_meta;
+    }
 }
-
-// function sb_ga_get_attach_images($imgnum = 10, $include_title = false, $include_featured = true)
-// {
-//     global $post;
-//     $attachments = get_post_meta($post->ID, 'fave_property_images', false);
-
-//     $images = [];
-//     if ($attachments) {
-//         foreach ($attachments as $img) {
-//             $img_src = wp_get_attachment_image_src($img, 'full');
-//             if (!empty($img_src[0])) {
-//                 // Replace https with http in the URL
-//                 $img_url = str_replace('https://', 'http://', $img_src[0]);
-//                 $images[] = [
-//                     'url' => $img_url,
-//                     'last_update' => date('Y-m-d'), // You can replace with actual last update if available
-//                 ];
-//                 if (count($images) >= $imgnum) {
-//                     break;
-//                 }
-//             }
-//         }
-//     }
-
-//     $pics_number = count($images);
-//     echo "<pics_number>{$pics_number}</pics_number>\n";
-//     echo "<pics>\n";
-//     $order = 1;
-//     foreach ($images as $img) {
-//         echo "    <pic order=\"{$order}\" last_update=\"{$img['last_update']}\">\n";
-//         echo "        {$img['url']}\n";
-//         echo "    </pic>\n";
-//         $order++;
-//     }
-//     echo "</pics>\n";
-// }
-
-// function sb_ga_get_attach_images($imgnum = 10, $include_title = false, $include_featured = true)
-// {
-//     global $post;
-//     $attachments = get_post_meta($post->ID, 'fave_property_images', false);
-//     $pics_number = count($attachments);
-//     echo "<pics_number>{$pics_number}</pics_number>\n";
-//     echo "<pics>\n";
-
-
-//     if ($attachments) {
-//         $imgid = 1;
-//         foreach ($attachments as $img) {
-//             $img_src = wp_get_attachment_image_src($img, 'full');
-//             if (!empty($img_src[0])) {
-//                 $last_update = '2025-03-28';
-//                 $img_url = $img_src[0];
-//                 echo "<pic order=\"{$imgid}\" last_update=\"{$last_update}\">{$img_url}</pic>\n";
-//                 $imgid++;
-//             }
-//         }
-//     }
-//     echo "</pics>\n";
-    
-// }
 
 function sb_ga_get_attach_images($imgnum = 10, $include_title = false, $include_featured = true)
 {
     global $post;
     $attachments = get_post_meta($post->ID, 'fave_property_images', false);
     
-     
-     
-    if ($attachments) {  ?>
-    <?php            
+    if ($attachments) {
         $imgid = 1;
-        foreach ( $attachments as $img  ) {
-        
-        $img= wp_get_attachment_image_src($img, 'full');
-        if (!empty($img[0])) {
-            ?>
-        <PHOTO<?php echo $imgid; ?>><?php
-                        echo $img[0]; ?></PHOTO<?php echo $imgid; ?>>
-        <?php $imgid++;
+        foreach ($attachments as $img) {
+            $img_src = wp_get_attachment_image_src($img, 'full');
+            if (!empty($img_src[0])) {
+                echo '<PHOTO' . $imgid . '>' . $img_src[0] . '</PHOTO' . $imgid . '>' . "\n";
+                $imgid++;
+                if ($imgid > $imgnum) {
+                    break;
+                }
+            }
         }
-        }
-            ?>
-
-    
-    <?php
-    } 
+    }
 }
+
 // Custom Meta Fields for properties
 function sb_ga_layout_of_custom_field()
 {
@@ -249,16 +186,19 @@ add_action('save_post', 'sb_ga_save_custom_field');
 
 function sb_ga_save_custom_field($post_id)
 {
-    if ((defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) || (defined('DOING_AJAX') && DOING_AJAX))
+    if ((defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) || (defined('DOING_AJAX') && DOING_AJAX)) {
         return;
+    }
 
     if (isset($_POST['post_type'])) {
         if ('page' == $_POST['post_type']) {
-            if (!current_user_can('edit_page', $post_id))
+            if (!current_user_can('edit_page', $post_id)) {
                 return;
+            }
         } else {
-            if (!current_user_can('edit_post', $post_id))
+            if (!current_user_can('edit_post', $post_id)) {
                 return;
+            }
         }
     }
 
@@ -299,7 +239,7 @@ function sb_ga_xml_feed_custom_column($column_name, $property_id)
 {
     if ($column_name == "include_in_feed") {
         $exclude_from_feed = get_post_meta($property_id, 'exclude_from_feed', true);
-        if (!$exclude_from_feed) { // Note: reversed logic since we're checking "exclude"
+        if (!$exclude_from_feed) {
             echo "<span style='color: green;'>Yes</span>";
         } else {
             echo "<span style='color: red;'>No</span>";
@@ -326,3 +266,5 @@ function sb_ga_set_property_meta()
         update_post_meta($p->ID, 'exclude_from_a_place_in_sun_feed', false);
     }
 }
+
+?>
