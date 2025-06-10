@@ -55,7 +55,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>'; ?>
                         
                     </account>
                     <?php
-                    $status_terms = sb_ga_get_details('propertyStatus');
+                    $status_terms = sb_ga_get_details('property_status');
                     $status = is_array($status_terms) ? implode(' ', $status_terms) : '';
                     $type = (stripos($status, 'Location') !== false) ? 'rentals' : 'properties';
                     ?>
