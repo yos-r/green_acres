@@ -169,31 +169,57 @@ function sb_ga_get_detail($name, $tag = '', $intval = false, $replace = null)
 //     echo "</pics>\n";
 // }
 
+// function sb_ga_get_attach_images($imgnum = 10, $include_title = false, $include_featured = true)
+// {
+//     global $post;
+//     $attachments = get_post_meta($post->ID, 'fave_property_images', false);
+//     $pics_number = count($attachments);
+//     echo "<pics_number>{$pics_number}</pics_number>\n";
+//     echo "<pics>\n";
+
+
+//     if ($attachments) {
+//         $imgid = 1;
+//         foreach ($attachments as $img) {
+//             $img_src = wp_get_attachment_image_src($img, 'full');
+//             if (!empty($img_src[0])) {
+//                 $last_update = '2025-03-28';
+//                 $img_url = $img_src[0];
+//                 echo "<pic order=\"{$imgid}\" last_update=\"{$last_update}\">{$img_url}</pic>\n";
+//                 $imgid++;
+//             }
+//         }
+//     }
+//     echo "</pics>\n";
+    
+// }
+
 function sb_ga_get_attach_images($imgnum = 10, $include_title = false, $include_featured = true)
 {
     global $post;
     $attachments = get_post_meta($post->ID, 'fave_property_images', false);
-    $pics_number = count($attachments);
-    echo "<pics_number>{$pics_number}</pics_number>\n";
-    echo "<pics>\n";
-
-
-    if ($attachments) {
-        $imgid = 1;
-        foreach ($attachments as $img) {
-            $img_src = wp_get_attachment_image_src($img, 'full');
-            if (!empty($img_src[0])) {
-                $last_update = '2025-03-28';
-                $img_url = $img_src[0];
-                echo "<pic order=\"{$imgid}\" last_update=\"{$last_update}\">{$img_url}</pic>\n";
-                $imgid++;
-            }
-        }
-    }
-    echo "</pics>\n";
     
-}
+     
+     
+    if ($attachments) {  ?>
+    <?php            
+        $imgid = 1;
+        foreach ( $attachments as $img  ) {
+        
+        $img= wp_get_attachment_image_src($img, 'full');
+        if (!empty($img[0])) {
+            ?>
+        <PHOTO<?php echo $imgid; ?>><?php
+                        echo $img[0]; ?></PHOTO<?php echo $imgid; ?>>
+        <?php $imgid++;
+        }
+        }
+            ?>
 
+    
+    <?php
+    } 
+}
 // Custom Meta Fields for properties
 function sb_ga_layout_of_custom_field()
 {

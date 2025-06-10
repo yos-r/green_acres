@@ -55,9 +55,9 @@ echo '<?xml version="1.0" encoding="UTF-8"?>'; ?>
                         
                     </account>
                     <?php
-                    $status_terms = sb_ga_get_details('property_status');
+                    $status_terms = sb_ga_get_details('propertyStatus');
                     $status = is_array($status_terms) ? implode(' ', $status_terms) : '';
-                    $type = (stripos($status, 'rent') !== false) ? 'rentals' : 'properties';
+                    $type = (stripos($status, 'Location') !== false) ? 'rentals' : 'properties';
                     ?>
                     <advert_type><?php echo $type; ?></advert_type>
                     <status>available</status>
@@ -99,14 +99,14 @@ echo '<?xml version="1.0" encoding="UTF-8"?>'; ?>
                     <structure>0</structure>
                     <mandate_number><?php echo esc_html(sb_ga_get_detail('fave_property_id')); ?></mandate_number>
                     <is_exclusive>1</is_exclusive>
-                    <agency_rates><?php echo (stripos($status, 'rent') !== false) ? '100' : '2'; ?></agency_rates>
+                    <agency_rates><?php echo (stripos($status, 'Location') !== false) ? '100' : '3'; ?></agency_rates>
                     <agency_rates_type>2</agency_rates_type>
                     <has_included_fees>0</has_included_fees>
 
                     <fees>
                         <?php 
                         $price = intval(sb_ga_get_detail('fave_property_price'));
-                        echo (stripos($status, 'rent') !== false) ? $price : ($price * 0.02);
+                        echo (stripos($status, 'Location') !== false) ? $price : ($price * 0.03);
                         ?>
                     </fees>
 
